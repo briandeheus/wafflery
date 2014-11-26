@@ -1,2 +1,3 @@
 node_modules/
 webserver.conf
+npm-debug.log
