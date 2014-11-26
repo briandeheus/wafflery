@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<style>
+
+		#app {
+			display: none;
+		}
+
+		.view {
+			display: none;
+		}
+
+		.view.active {
+			display: block;
+		}
+
+	</style>
+	<script>
+		window.settings = {{settings}}
+	</script>
+</head>
+
+<body>
+
+	<div id="loader">
+		{{loader}}
+	</div>
+
+	<div id="app">
+
+		<!-- Container for views -->
+		<div id="views" class="views">
+		</div>
+
+		<!-- Container for dialogs -->
+		<div id="dialogs" class="dialogs">
+		</div>	
+
+	</div>
+
+</body>
+</html>
