@@ -74,8 +74,8 @@ app.get('/views', function (req, res) {
 
 module.exports = function (options) {
 
-	var host;
-	var port;
+	var host = options.host;
+	var port = options.port;
 
 	if (!options.port) {
 		port = 1337;
