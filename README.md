@@ -81,3 +81,7 @@ view.buttons.iambutton.ontap = function () {
 
 ```
 
+# Examples
+
+Super simple example can be found here: [example app 1](https://github.com/briandeheus/wafflery-example-1)
+
