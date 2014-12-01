@@ -1,7 +1,7 @@
 wafflery
 ========
 
-Wafflery allows you to develop and serve one-page HTML5 apps without having to learn a new framework.
+Wafflery is a tool that allows you to build one-page applications without having to learn a new framework. Wafflery supports caching out of the box.
 
 # Installation
 `npm install -g wafflery`
