@@ -14,7 +14,7 @@ Wafflery bakes one-page apps and provides you with a small utility to bootstrap 
 
 # Wafflery 101
 
-Wafflery contains a server which builds your application and a small loader that takes care of downloading bootstrapping your application. You don't have to to use the loader, but it helps with getting started
+Wafflery contains a server which builds your application and a small loader that takes care of downloading bootstrapping your application. You don't have to to use the loader, but it helps with getting started. The entry point for browserify is `app/waffle-loader`.
 
 ## Using the Client Loader
 
