@@ -51,12 +51,10 @@ program
 
 			case 'view':
 				add.view(options.name);
-				build.appLoader(config);
 			break;
 
 			case 'component':
 				add.component(options.name);
-				build.appLoader(config);
 			break;
 
 			default:

@@ -144,4 +144,5 @@ window.onload = function () {
 	}
 
 	fetchStyles();
+	
 }

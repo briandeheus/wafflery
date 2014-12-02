@@ -1,87 +1,75 @@
 wafflery
 ========
 
-Wafflery is a tool that allows you to build one-page applications without having to learn a new framework. Wafflery supports caching out of the box.
+Wafflery bakes one-page apps and provides you with a small utility to bootstrap and load your application in the browser or Cordova/Phonegap application.
 
 # Installation
 `npm install -g wafflery`
 
-# Getting started
+# Getting Started
 1. Make a new directory
 2. Run: `wafflery init`
 3. Serve some waffles: `wafflery serve`
-4. Go to localhost:1337 and see the magic. There is nothing. I know.
+4. Go to localhost:1337/loader and see the magic. There is nothing. I know.
 
-## Adding views
-1. `wafflery add view --name <viewname>`
+# Wafflery 101
 
-## Adding components
-1. `wafflery add component --name <component name>`
+Wafflery contains a server which builds your application and a small loader that takes care of downloading bootstrapping your application. You don't have to to use the loader, but it helps with getting started
 
-# Wafflery Internals 101
+## Using the Client Loader
 
-Wafflery contains two major components. The server which builds your application and the frontend that takes care of downloading and running your application.
-
-## Request flow
-
-1. The browser makes a request to localhost:1337
+1. The browser makes a request to localhost:1337/loader
 2. Wafflery replies with all the files that can be found in the `loader/` directory.
-3. The loader contains a script to fetch javascript, html and css from the server.
+3. This loader contains a script to fetch javascript, html and css from the server.
 4. The server builds these files using Browserify from the `app/` directory.
 
-## Now what?
+## URL endpoints
 
-Now that your application has been loaded in the browser you can have a component, or a view, call
+Wafflery exposes the following endpoints
 
-```
-var waffle = require('waffle-app');
-waffle.hideLoader();
-waffle.showApp();
-```
+### /loader
 
-To show your app. You can also do this manually if you want by calling `document.getElementById('loader').style.display = 'none'` and `document.getElementById('app').style.display = 'block'`. `waffle.hideLoader()` and `waffle.showApp()` does exactly the same.
+This builds and loads the files in the "loader" directory. 
 
-## Views
+### /js
 
-The `waffle-app` component comes with your application by default. You don't have to use it but it makes it easier to get started developing app. Feel free to integrate Angular, Backbone or Ember or whatever in your project. Wafflery won't judge you. Maybe only behind your back.
+This returns all the JS in your app directory
 
-### view/view.html
+### /js/version
 
-This is the view that gets loaded. When you add a new view
+Returns the current version of your JS files. This is a crc32 hash of all the JS files under the app/ directory.
 
-```
-<div id="welcomeView" class="view">
-</div>
+### /styles
 
-```
+This returns all the CSS that can be found in your app directory. Waffle supports LESS by default.
 
-It makes a view.html file with the content above. Please create your HTML *inside* the file. Again you don't have to, but for the love of god don't make it so hard on yourself.
+### /styles/version
 
-`waffle-app` has some magical features that allow you map buttons, input, and variables to your view!
+Returns the current version of your LESS files. This is a crc32 hash of all the LESS files under the app/ directory.
 
-```
-<div id="welcomeView" class="view">
-	<div data-button="iambutton">Click me!</div>
-	<var name="iamvar">hello</var>
-</div>
-```
+### /html
 
-### view/index.js
+This returns all the HTML from your component and views directory
 
-You can tap/click actions on the button like so, in your view/index.js
+### /html/version
 
-```
-var waffle = require('waffle-app'); //Automatically added
-var view = waffle.addView('welcome', document.getElementById('welcomeView'), true); //Automatically added
+This returns all the HTML from your component and views directory.
 
-//ontap automatically determines wether touch events are supported or not.
-view.buttons.iambutton.ontap = function () {
-	view.setVar('iamvar', 'world'); //Change the content of <var> to 'world'
-}
+## CLI Commands
 
-```
+### Initializing the project
+1. `wafflery init`
 
-# Examples
+### Adding Views
+1. `wafflery add view --name <viewname>`
 
-Super simple example can be found here: [example app 1](https://github.com/briandeheus/wafflery-example-1)
+### Adding Components
+1. `wafflery add component --name <component name>`
 
+### Serving files using wafflery
+1. `wafflery serve`, optional -p and -h arguments to select a port and hostname/ip address to bind to.
+
+## Other
+
+### waffle.json
+These contain settings that are loaded into the browser and are used for the loader to know where Wafflery is serving pages.

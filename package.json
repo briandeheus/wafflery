@@ -1,7 +1,7 @@
 {
   "name": "wafflery",
-  "version": "0.2.1",
-  "description": "Wafflery makes one page apps",
+  "version": "0.3.0",
+  "description": "Wafflery bakes one page apps",
   "main": "index.js",
   "bin": {
     "wafflery": "./bin/cmd"

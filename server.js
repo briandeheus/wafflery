@@ -5,7 +5,7 @@ var logger = require('./lib/logger');
 var build  = require('./lib/build');
 var crc    = require('crc');
 
-app.get('/', function (req, res) {
+app.get('/loader', function (req, res) {
 
 	var loader = build.loader();
 	res.status(200);
