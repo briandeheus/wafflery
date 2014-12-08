@@ -19,7 +19,7 @@ app.get('/js', function (req, res) {
 	build.js(function (error, js) {
 
 		if (error) {
-			logger.error('Failed to bake a JS waffle', error);
+			logger.error('Failed to bake a JS waffle', error.message);
 			res.status(500)
 			res.end();
 			return;
@@ -39,7 +39,7 @@ app.get('/js/version', function (req, res) {
 	build.js(function (error, js) {
 
 		if (error) {
-			logger.error('Failed to bake a JS hash', error);
+			logger.error('Failed to bake a JS hash', error.message);
 			res.status(500)
 			res.end();
 			return;
