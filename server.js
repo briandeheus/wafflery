@@ -5,14 +5,6 @@ var logger = require('./lib/logger');
 var build  = require('./lib/build');
 var crc    = require('crc');
 
-app.get('/loader', function (req, res) {
-
-	var loader = build.loader();
-	res.status(200);
-	res.send(loader);
-
-});
-
 app.get('/js', function (req, res) {
 
 	var then = Date.now();
@@ -131,3 +123,41 @@ app.get('/html/version', function (req, res) {
 	});
 
 });
+
+module.exports = function (options, config) {
+
+	var host = options.host;
+	var port = options.port;
+
+	if (!options.port) {
+		port = 1337;
+	}
+
+	if (!options.host) {
+		host = 'localhost';
+	}
+
+	app.get(config.loader, function (req, res) {
+
+		var loader = build.loader();
+		res.status(200);
+		res.send(loader);
+
+	});
+
+	var server = app.listen(port, host, function () {
+
+	  logger.info('Wafflery is now serving waffles on', util.format('http://%s:%s', host, port));
+
+	});
+
+};
+
+if (process.argv[2] === 'daemon') {
+
+	var options = JSON.parse(process.argv[3]);
+	var config  = JSON.parse(process.argv[4]);
+
+	module.exports(options, config);
+
+}

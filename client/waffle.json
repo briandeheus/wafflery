@@ -3,6 +3,7 @@
 		"development": "localhost:1337",
 		"production": "localhost:1337"
 	},
+	"loader": "/loader",
 	"mode": "development",
 	"components": [],
 	"views": []
