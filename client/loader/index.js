@@ -1,6 +1,8 @@
 window.onload = function () {
 
 	var settings = window.settings;
+	var URL      = settings.urls[settings.mode];
+	
 	var loader   = document.getElementById('loader');
 	var fillers  = {
 		views:    document.getElementById('views'),
@@ -92,16 +94,16 @@ window.onload = function () {
 
 	function fetchStyles() {
 
-		fetchAndCompareHash('styles', function (error, shouldUpdate) {
+		fetchAndCompareHash('css', function (error, shouldUpdate) {
 
 			if (shouldUpdate) {
 
-				fetch('styles', addStyles, fetchViews);
+				fetch('css', addStyles, fetchViews);
 				return;
 
 			}
 
-			addStyles(localStorage.getItem('cache/styles'));
+			addStyles(localStorage.getItem('cache/css'));
 			fetchViews();
 
 		});
@@ -110,16 +112,16 @@ window.onload = function () {
 
 	function fetchViews() {
 
-		fetchAndCompareHash('views', function (error, shouldUpdate) {
+		fetchAndCompareHash('html', function (error, shouldUpdate) {
 
 			if (shouldUpdate) {
 
-				fetch('views', addViews, fetchJS);
+				fetch('html', addViews, fetchJS);
 				return;
 
 			}
 
-			addViews(localStorage.getItem('cache/views'));
+			addViews(localStorage.getItem('cache/html'));
 			fetchJS();
 
 		});

@@ -39,11 +39,11 @@ This returns all the JS in your app directory
 
 Returns the current version of your JS files. This is a crc32 hash of all the JS files under the app/ directory.
 
-### /styles
+### /css
 
 This returns all the CSS that can be found in your app directory. Waffle supports LESS by default.
 
-### /styles/version
+### /css/version
 
 Returns the current version of your LESS files. This is a crc32 hash of all the LESS files under the app/ directory.
 

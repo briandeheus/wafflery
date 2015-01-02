@@ -52,7 +52,7 @@ app.get('/js/version', function (req, res) {
 
 });
 
-app.get('/styles', function (req, res) {
+app.get('/css', function (req, res) {
 
 	var then = Date.now();
 	build.css(function (error, css) {
@@ -72,7 +72,7 @@ app.get('/styles', function (req, res) {
 
 });
 
-app.get('/styles/version', function (req, res) {
+app.get('/css/version', function (req, res) {
 
 	var then = Date.now();
 	build.css(function (error, css) {
@@ -92,7 +92,7 @@ app.get('/styles/version', function (req, res) {
 });
 
 
-app.get('/views', function (req, res) {
+app.get('/html', function (req, res) {
 
 	var then = Date.now();
 
@@ -113,7 +113,7 @@ app.get('/views', function (req, res) {
 
 });
 
-app.get('/views/version', function (req, res) {
+app.get('/html/version', function (req, res) {
 
 	var then = Date.now();
 	build.views(function (error, views) {
@@ -131,25 +131,3 @@ app.get('/views/version', function (req, res) {
 	});
 
 });
-
-
-module.exports = function (options) {
-
-	var host = options.host;
-	var port = options.port;
-
-	if (!options.port) {
-		port = 1337;
-	}
-
-	if (!options.host) {
-		host = 'localhost';
-	}
-
-	var server = app.listen(port, host, function () {
-
-	  logger.info('Wafflery is now serving waffles on', util.format('http://%s:%s', host, port));
-
-	});
-
-};
