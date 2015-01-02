@@ -11,6 +11,12 @@ Wafflery bakes one-page apps and provides you with a small utility to bootstrap 
 2. Run: `wafflery init`
 3. Serve some waffles: `wafflery serve`
 4. Go to localhost:1337/loader and see the magic. There is nothing. I know.
+5. Use the -p or -h arguments to set a port or host respectively
+
+# Serving waffles as a daemon
+Run `wafflery serve --daemon` to run Wafflery as a daemon. You can use -p and -h to set the port or host respectively.
+
+Run `wafflery serve --stop` to stop serving waffles.
 
 # Wafflery 101
 
@@ -39,11 +45,11 @@ This returns all the JS in your app directory
 
 Returns the current version of your JS files. This is a crc32 hash of all the JS files under the app/ directory.
 
-### /styles
+### /css
 
 This returns all the CSS that can be found in your app directory. Waffle supports LESS by default.
 
-### /styles/version
+### /css/version
 
 Returns the current version of your LESS files. This is a crc32 hash of all the LESS files under the app/ directory.
 

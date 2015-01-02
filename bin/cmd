@@ -24,9 +24,94 @@ program
 	.description('Serves your waffle to hungry clients')
 	.option('-p, --port [port]', 'Port to run on e.g 1337')
 	.option('-h, --host [host]', 'Address to listen on e.g 127.0.0.1')
+	.option('-d, --daemon', 'Run Wafflery as a daemon')
+	.option('-s, --stop', 'Stop running Wafflery as a daemon')
 	.action(function(options){
 
-		require('../server')(options);
+		try {
+
+			var config = require(cwd + '/waffle.json');
+
+		} catch (e) {
+
+			logger.error('No Waffle config file found. Run `wafflery init` to create a Wafflery config file.')
+			return;
+
+		}
+
+		var fs = require('fs');
+
+		if (options.stop) {
+
+			try {
+				var pidf  = fs.readFileSync('./wafflery.pid').toString();
+			} catch (e) {
+				logger.error('No wafflery.pid file found. Are you sure Wafflery is running as a Daemon?');
+				process.exit();
+			}
+
+			try {
+				process.kill(pidf, 'SIGKILL');
+				fs.unlinkSync('./wafflery.pid')
+			} catch (e) {
+				logger.error('Could not kill the Wafflery Daemon:', e);
+				process.exit();
+			}
+
+			logger.info('Wafflery is now closed for business. We hope to see you again.');
+			logger.info('');
+			logger.info('♥');
+
+
+		} else if (options.daemon) {
+
+			var spawn = require('child_process').spawn;
+			var out   = fs.openSync('./wafflery.log', 'a');
+			var err   = fs.openSync('./wafflery.log', 'a');
+
+			try {
+				var pidf  = fs.readFileSync('./wafflery.pid').toString();
+			} catch (e) {
+				//Do nothing.
+			}
+
+
+			if (pidf) {
+				logger.error('Wafflery is already running as a Daemon. Run `wafflery serve stop` to stop the daemon');
+				process.exit();
+			}
+
+			var child = spawn('node', [__dirname + '/../server.js', 'daemon', JSON.stringify({
+
+				port: options.port,
+				host: options.host
+
+			}), JSON.stringify(config)], {
+
+				detached: true,
+				stdio: [ 'ignore', out, err ]
+
+			});
+
+		 	logger.info('Running Wafflery in Daemon mode:', child.pid);
+		 	fs.writeFileSync('./wafflery.pid', child.pid);
+
+		 	child.unref();
+
+		} else {
+
+			require('../server')(options, config);
+
+		}
+
+	});
+
+program
+	.command('bake [type]')
+	.description('Bake a waffle and server it to STDOUT')
+	.action(function(type, options){
+
+		require('../lib/bake')(type, options);
 
 	});
 
