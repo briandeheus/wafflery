@@ -59,7 +59,7 @@ window.onload = function () {
 
 		}
 
-		xmlHttp.open("GET", window.settings.host + '/' + type + '/version', false);
+		xmlHttp.open("GET", URL + '/' + type + '/version', false);
 		xmlHttp.send();
 
 	}
@@ -87,7 +87,7 @@ window.onload = function () {
 
 		}
 
-		xmlHttp.open("GET", window.settings.host + '/' + type , false);
+		xmlHttp.open("GET", URL + '/' + type , false);
 		xmlHttp.send();
 
 	}

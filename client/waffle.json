@@ -1,5 +1,5 @@
 {
-	"host": {
+	"urls": {
 		"development": "localhost:1337",
 		"production": "localhost:1337"
 	},
