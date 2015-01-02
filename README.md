@@ -11,6 +11,12 @@ Wafflery bakes one-page apps and provides you with a small utility to bootstrap 
 2. Run: `wafflery init`
 3. Serve some waffles: `wafflery serve`
 4. Go to localhost:1337/loader and see the magic. There is nothing. I know.
+5. Use the -p or -h arguments to set a port or host respectively
+
+# Serving waffles as a daemon
+Run `wafflery serve --daemon` to run Wafflery as a daemon. You can use -p and -h to set the port or host respectively.
+
+Run `wafflery serve --stop` to stop serving waffles.
 
 # Wafflery 101
 
