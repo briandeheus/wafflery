@@ -116,10 +116,9 @@ program
 	});
 
 program
-	.command('add [type]')
+	.command('add [type] [name]')
 	.description('Add a view or component')
-	.option('-n, --name [name]', 'Name of the view or component to add')
-	.action(function(type, options){
+	.action(function(type, name, options){
 
 		try {
 
@@ -135,11 +134,11 @@ program
 		switch (type) {
 
 			case 'view':
-				add.view(options.name);
+				add.view(name);
 			break;
 
 			case 'component':
-				add.component(options.name);
+				add.component(name);
 			break;
 
 			default:

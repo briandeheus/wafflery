@@ -67,10 +67,10 @@ This returns all the HTML from your component and views directory.
 1. `wafflery init`
 
 ### Adding Views
-1. `wafflery add view --name <viewname>`
+1. `wafflery add view <viewname>`
 
 ### Adding Components
-1. `wafflery add component --name <component name>`
+1. `wafflery add component <component name>`
 
 ### Serving files using wafflery
 1. `wafflery serve`, optional -p and -h arguments to select a port and hostname/ip address to bind to.
